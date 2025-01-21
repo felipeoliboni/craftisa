@@ -14,7 +14,7 @@
 
 ## Micro Service 03 - Voting
 
-- Sprint boot (Java)
+**Language** Java
 
 ### Backing Service 02 : voting-db
 

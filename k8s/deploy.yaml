@@ -50,6 +50,9 @@ spec:
       containers:            
         - name: catalogue
           image: foliboni/craftisa:catalogue
+          envFrom:
+          - configMapRef:
+              name: catalogue-secrets
           ports:
             - containerPort: 5000
 ---
@@ -129,3 +132,43 @@ spec:
   ports:
   - port: 8081
     targetPort: 8081            
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: catalogue-db
+spec:
+  selector:
+    matchLabels:
+      app: catalogue-db
+  template:
+    metadata:
+      labels:
+        app: catalogue-db
+    spec:
+      containers:
+        - name: catalogue-db
+          image: postgres:15-alpine
+          ports:
+          - containerPort: 5432
+          envFrom:
+          - configMapRef:
+              name: postgres-secret
+          volumeMounts:
+          - name: postgres-data
+            mountPath: /var/lib/postgresql/data
+      volumes:
+        - name: postgres-data
+          persistentVolumeClaim:
+            claimName: postgres-volume-claim
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: catalogue-db
+spec:
+  selector:
+    app: catalogue-db
+  ports:
+  - port: 5432
+    targetPort: 5432  

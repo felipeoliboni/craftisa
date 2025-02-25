@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-secret
+  labels:
+    app: postgres
+data:
+  POSTGRES_DB: catalogue
+  POSTGRES_USER: devops
+  POSTGRES_PASSWORD: devops
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: catalogue-secret
+  labels:
+    app: catalogue
+data:
+  DB_HOST: catalogue-db  # Nome do Service do PostgreSQL
+  DB_PORT: "5432"
+  DB_NAME: catalogue
+  DB_USER: devops
+  DB_PASSWORD: devops

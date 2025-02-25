@@ -14,3 +14,10 @@ spec:
                 name: craftisa-front
                 port:
                   number: 80
+          - path: /catalogue
+            pathType: Prefix
+            backend:
+              service:
+                name: catalogue
+                port:
+                  number: 5000

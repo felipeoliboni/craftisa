@@ -36,12 +36,6 @@ jobs:
         steps:
         - name: Checkout
           uses: actions/checkout@v4
-        
-        - name: Get changed directories
-          id: changes
-          run: |
-            CHANGED_DIRS=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | awk -F '/' '{print $1}' | sort -u | uniq | grep -E 'catalogue|front|recco|voting' || true)
-            echo "CHANGED_DIRS=$CHANGED_DIRS" >> $GITHUB_ENV
 
         - name: Docker Hub Auth
           uses: docker/login-action@v3

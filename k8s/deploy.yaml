@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: front
-          image: foliboni/craftisa:front
+          image: foliboni/craftisa-front
           ports:
             - containerPort: 3000
 ---
@@ -49,7 +49,7 @@ spec:
     spec:
       containers:            
         - name: catalogue
-          image: foliboni/craftisa:catalogue
+          image: foliboni/craftisa-catalogue
           envFrom:
           - configMapRef:
               name: catalogue-secrets
@@ -85,7 +85,7 @@ spec:
     spec:
       containers:            
         - name: voting
-          image: foliboni/craftisa:voting
+          image: foliboni/craftisa-voting
           ports:
             - containerPort: 8080
 ---
@@ -118,7 +118,7 @@ spec:
     spec:
       containers:            
         - name: recco
-          image: foliboni/craftisa:recom
+          image: foliboni/craftisa-recom
           ports:
             - containerPort: 8081
 ---

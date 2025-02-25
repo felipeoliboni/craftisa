@@ -14,7 +14,7 @@ jobs:
           - name: Get changed directories
             id: changes
             run: |
-              CHANGED_DIRS=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | awk -F '/' '{print $1}' | sort -u | uniq | grep -E 'projeto1|projeto2|projeto3|projeto4' || true)
+              CHANGED_DIRS=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | awk -F '/' '{print $1}' | sort -u | uniq | grep -E 'catalogue|front|recco|voting' || true)
               if [[ -n "$CHANGED_DIRS" ]]; then
                 echo "changed_dirs=$(echo $CHANGED_DIRS | jq -R -s -c 'split(" ")')" >> $GITHUB_ENV
               else

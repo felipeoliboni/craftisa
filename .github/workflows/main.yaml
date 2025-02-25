@@ -21,6 +21,6 @@ jobs:
           uses: docker/build-push-action@v5
           with:
             context: .
-            file: ./#${{ matrix.service }}/Dockerfile
+            file: ./${{ matrix.service }}/Dockerfile
             push: true
             tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}:${{ matrix.service }}

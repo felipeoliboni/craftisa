@@ -40,7 +40,7 @@ jobs:
         - name: Get changed directories
           id: changes
           run: |
-            CHANGED_DIRS=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | awk -F '/' '{print $1}' | sort -u | uniq | grep -E 'projeto1|projeto2|projeto3|projeto4' || true)
+            CHANGED_DIRS=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | awk -F '/' '{print $1}' | sort -u | uniq | grep -E 'catalogue|front|recco|voting' || true)
             echo "CHANGED_DIRS=$CHANGED_DIRS" >> $GITHUB_ENV
 
         - name: Docker Hub Auth
